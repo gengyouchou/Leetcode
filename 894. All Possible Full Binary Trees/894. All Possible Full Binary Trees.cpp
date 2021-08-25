@@ -34,3 +34,34 @@ public:
         
     }
 };
+
+//dp verson
+
+class Solution {
+public:
+    vector<TreeNode*> allPossibleFBT(int n) {
+        
+        if(n%2==0) return {};
+        
+        vector<vector<TreeNode*>> dp(n+1);
+        
+        dp[1]={new TreeNode(0)};
+        
+        for(int i=3;i<=n;i+=2){
+            for(int j=1;j<i;j+=2){
+                int k=i-j-1;
+                for(const auto& l:dp[j]){
+                    for(const auto& r:dp[k]){
+                        auto root =new TreeNode(0);
+                        root->left=l;
+                        root->right=r;
+                        dp[i].push_back(root);
+                    }
+                }
+            }
+        }
+        
+        return dp[n];
+        
+    }
+};
