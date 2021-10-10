@@ -11,6 +11,7 @@ private:
     void dfs(int n,int k,int i,vector<int>& temp){
         if(temp.size()==k){
             res.push_back(temp);
+            return;
         }
         
         for(;i<=n;++i){
